@@ -98,7 +98,9 @@ render() {
     return (
         <div className="column is-half">
             <ul className="columns is-multiline">
-                <SingleMovie  /> 
+                {this.props.movies.map(movie => (
+                    <SingleMovie key={movie.id} movie={movie} />
+                ))}
             </ul>   
         </div>   
     );
@@ -113,20 +115,21 @@ class SingleMovie extends React.Component {
 
 
 render() {
+    const { movie } = this.props;
     return (
         <li className="column is-one-third-desktop is-half-tablet"  >
             <div className="card">
                 <div className="card-image">
                 <figure className="image is-2by3">
-                    <img src="https://image.tmdb.org/t/p/w185/sm8iVzA7kRp0d4BSIsgXjsSBMKV.jpg"  alt="Sample Title" />
+                    <img src={"https://image.tmdb.org/t/p/w185" + movie.poster} alt={movie.title} />
                 </figure>
                 </div>
                 <div className="card-content has-text-centered content-rectangle">
-                    <h2 className="title is-6">Sample Title (000 min)</h2>
-                    <p className="is-size-7">Sample tagline</p>
+                    <h2 className="title is-6">{movie.title} ({movie.runtime} min)</h2>
+                    <p className="is-size-7">{movie.tagline}</p>
                 </div>    
                 <footer className="card-footer">
-                    <MovieLink id="sm8iVzA7kRp0d4BSIsgXjsSBMKV" />
+                    <MovieLink tmdbID={movie.tmdbID} />
                 </footer>                                      
             </div>                
         </li>
@@ -143,7 +146,7 @@ render() {
 const MovieLink = props => {
   return (
         <a className="button card-footer-item" 
-            href={ "https://www.themoviedb.org/movie/" + props.id } >
+            href={ "https://www.themoviedb.org/movie/" + props.tmdbID } >
 
                 <img src="images/tmdb.svg" width="30" />
         </a>    
