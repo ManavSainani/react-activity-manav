@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -55,30 +55,30 @@ class MovieForm extends React.Component {
 
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Title</label>
+                        <label className="label" htmlFor="movie-title">Title</label>
                     </div>
                     <div className="field-body">
-                        <input className="input" type="text" name="title"
+                        <input className="input" id="movie-title" type="text" name="title"
                             value="sample title" />   
                     </div>
                 </div>   
 
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Tagline</label>
+                        <label className="label" htmlFor="movie-tagline">Tagline</label>
                     </div>
                     <div className="field-body">
-                        <textarea className="textarea" rows="2"  name="tagline"
+                        <textarea className="textarea" id="movie-tagline" rows="2"  name="tagline"
                             value="sample tagline"></textarea>
                     </div>
                 </div>                  
 
                 <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                        <label className="label">Runtime</label>
+                        <label className="label" htmlFor="movie-runtime">Runtime</label>
                     </div>
                     <div className="field-body">
-                        <input className="input" type="text" name="runtime"
+                        <input className="input" id="movie-runtime" type="text" name="runtime"
                             value="sample runtime"/>   
                     </div>
                 </div>    
@@ -148,7 +148,7 @@ const MovieLink = props => {
         <a className="button card-footer-item" 
             href={ "https://www.themoviedb.org/movie/" + props.tmdbID } >
 
-                <img src="images/tmdb.svg" width="30" />
+                <img src="images/tmdb.svg" width="30" alt="TMDB" />
         </a>    
     );
 };
