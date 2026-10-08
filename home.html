@@ -65,8 +65,20 @@ class App extends React.Component {
 */
 class MovieForm extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        const { name, value } = event.target;
+        const updatedMovie = Object.assign({}, this.props.movie);
+        updatedMovie[name] = value;
+        this.props.saveChanges(this.props.index, updatedMovie);
+    }
 
     render() {
+        const { movie } = this.props;
         return (
             <form className="panel has-background-grey-lighter"  >
 
@@ -76,7 +88,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" id="movie-title" type="text" name="title"
-                            value="sample title" />   
+                            value={movie.title} onChange={this.handleChange} />
                     </div>
                 </div>   
 
@@ -86,7 +98,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <textarea className="textarea" id="movie-tagline" rows="2"  name="tagline"
-                            value="sample tagline"></textarea>
+                            value={movie.tagline} onChange={this.handleChange}></textarea>
                     </div>
                 </div>                  
 
@@ -96,7 +108,7 @@ class MovieForm extends React.Component {
                     </div>
                     <div className="field-body">
                         <input className="input" id="movie-runtime" type="text" name="runtime"
-                            value="sample runtime"/>   
+                            value={movie.runtime} onChange={this.handleChange}/>
                     </div>
                 </div>    
                                                   
